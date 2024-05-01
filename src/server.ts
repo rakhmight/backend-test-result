@@ -8,12 +8,12 @@ export const app = build(fastifyConfig);
     try {             
         await app.ready((err:Error | null) => {
             if (err) throw err
-            // app.swagger()
         })
         
-        if(!process.env.SERVER_PORT) throw new Error('')
+        if(!process.env.SERVER_PORT) throw new Error('SERVER_PORT enverventment variable is not defined')
         const serverHost = getHostAddress()
-        if(!serverHost) throw new Error('')
+        //необязательно
+        if(!serverHost) throw new Error('Cannot determine host address')
             
         await app.listen({port: +process.env.SERVER_PORT, host: serverHost })
         .then(() => {            

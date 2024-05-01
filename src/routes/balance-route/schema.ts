@@ -20,15 +20,17 @@ export const BalanceWriteOffSchema = {
             data: {
                 type: 'object',
                 properties: {
-                    id: {
-                        type: 'number'
+                    userID: {
+                        type: 'number',
+                        default: 1
                     },
                     amount: {
                         type: 'number',
-                        minimum: 0.1
+                        minimum: 0.1,
+                        default: 100
                     }
                 },
-                required: ['id']
+                required: ['userID', 'amount']
             }
         },
         required: ['data']
@@ -42,7 +44,12 @@ export const BalanceWriteOffSchema = {
             data: {
                 type: 'object',
                 properties: {
-                    ...userData
+                    balanceData: {
+                        type: 'object',
+                        properties: {
+                            ...userData
+                        }
+                    }
                 }
             }
           }
