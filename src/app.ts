@@ -40,4 +40,9 @@ function checkServerEnv(app:FastifyInstance){
         app.log.fatal('The environment variable responsible for connecting to the MongoDB database is not set')
         process.exit(1)
     }
+
+    if(!process.env.REDIS_DB_HOST || !process.env.REDIS_DB_PORT || !process.env.REDIS_DB_PASSWORD || !process.env.REDIS_DB_INDEX){
+        app.log.fatal('The environment variable responsible for connecting to the Redis database is not set')
+        process.exit(1)
+    }
 }
