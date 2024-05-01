@@ -8,16 +8,20 @@ import BalanceRoute from './routes/balance-route/BalanceRoute'
 
 //plugins
 import { postgresParams } from './plugins/postgres'
+import { corsParams } from './plugins/cors'
 import { swaggerParams } from './plugins/swagger'
 import { swaggerUIParams } from './plugins/swagger/ui'
+import { redisParams } from './plugins/redis'
 
 export const build = (opts = {}) => {
     const app = fastify(opts)
     checkServerEnv(app)
 
+    app.register(require('@fastify/cors'), corsParams)
     app.register(require('@fastify/postgres'), postgresParams)
     app.register(require('@fastify/swagger'), swaggerParams)
     app.register(require('@fastify/swagger-ui'), swaggerUIParams)
+    app.register(require('@fastify/redis'), redisParams)
     
     app.register(ItemRoute)
     app.register(BalanceRoute)

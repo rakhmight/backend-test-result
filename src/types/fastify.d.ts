@@ -1,5 +1,6 @@
 import { FastifyLoggerInstance, FastifyPluginAsync, RawReplyDefaultExpression, RawRequestDefaultExpression, RawServerBase, RawServerDefault } from 'fastify'
 import { Pool } from 'pg';
+import { FastifyRedis } from '@fastify/redis'
 
 declare module 'fastify' {
   export interface FastifyInstance<
@@ -9,7 +10,8 @@ declare module 'fastify' {
   Logger = FastifyLoggerInstance
 > {
 
-    pg: Pool
+    pg: Pool,
+    redis: FastifyRedis 
 
   }
 }
