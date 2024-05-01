@@ -12,7 +12,6 @@ export async function writeOffBalance(userID: number, amount: number, pg: Pool) 
     if(userData.balance < amount) throw new Error('bad-req')
 
     const balanceData = await client.query(`UPDATE users SET balance=${userData.balance-amount} WHERE id=$1 RETURNING *`, [userID])
-    console.log(balanceData.rows[0])
             
     client.release()
     return balanceData.rows[0]
